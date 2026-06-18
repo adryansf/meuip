@@ -1,0 +1,58 @@
+---
+import { ADSENSE } from '../config';
+
+interface Props {
+  slotId: string;
+  format?: 'auto' | 'fluid' | 'rectangle' | 'horizontal' | 'vertical';
+  layoutKey?: string;
+  fullWidthResponsive?: boolean;
+  className?: string;
+  label?: string;
+}
+
+const {
+  slotId,
+  format = 'fluid',
+  layoutKey,
+  fullWidthResponsive = true,
+  className = '',
+  label = 'Publicidade',
+} = Astro.props;
+
+const containerMaxWidth =
+  format === 'rectangle' ? 'max-w-md' : format === 'vertical' ? 'max-w-[300px]' : 'max-w-5xl';
+
+const minHeight = format === 'rectangle' ? '280px' : format === 'vertical' ? '600px' : '120px';
+---
+
+<aside
+  class={`ad-slot not-prose mx-auto my-6 flex w-full ${containerMaxWidth} flex-col items-center justify-center text-center ${className}`}
+  aria-label={label}
+  style={`min-height: ${minHeight};`}
+>
+  <div class="mb-1 text-[10px] uppercase tracking-wider text-slate-400">
+    {label}
+  </div>
+  <ins
+    class="adsbygoogle mx-auto block"
+    style="display:block"
+    data-ad-client={ADSENSE.clientId}
+    data-ad-slot={slotId}
+    data-ad-format={format}
+    data-full-width-responsive={fullWidthResponsive ? 'true' : 'false'}
+    data-ad-layout-key={layoutKey}
+  ></ins>
+</aside>
+
+<script is:inline>
+  (function pushAds() {
+    try {
+      if (window.adsbygoogle && !window.__adsPushed) {
+        window.__adsPushed = true;
+      }
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.warn('AdSense push falhou:', e);
+    }
+  })();
+</script>

@@ -1,17 +1,287 @@
 ---
+import AdSlot from '../components/AdSlot.astro';
+import IpChecker from '../components/IpChecker.astro';
+import { ADSENSE, SITE } from '../config';
+import Layout from '../layouts/Layout.astro';
 
+const title = 'Meu IP — Descubra seu IPv4 e IPv6 público agora';
+const description =
+  'Ferramenta gratuita para descobrir seu endereço IP público (IPv4 e IPv6) em tempo real. Verifique seu IP, entenda a diferença entre IPv4 e IPv6 e saiba como funciona.';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={title} description={description}>
+  <IpChecker />
+
+  <article
+    class="prose prose-slate mx-auto max-w-3xl px-4 py-10 sm:py-14 prose-headings:scroll-mt-20 prose-headings:font-extrabold prose-headings:tracking-tight prose-h2:mt-24 prose-h2:mb-6 prose-h2:flex prose-h2:items-baseline prose-h2:gap-3 prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-3 prose-h2:text-2xl prose-h2:font-extrabold prose-h2:text-slate-900 prose-h2:tracking-tight prose-h3:mt-12 prose-h3:mb-3 prose-h3:text-lg prose-h3:font-semibold prose-h3:text-slate-800 prose-p:my-5 prose-p:text-justify prose-p:leading-relaxed prose-p:hyphens-auto prose-p:[hyphenate-limit-chars:8_4_4] prose-strong:mr-1.5 prose-strong:font-semibold prose-strong:text-slate-900 prose-ul:my-5 prose-ul:ml-2 prose-ol:my-5 prose-ol:ml-2 prose-li:my-2 prose-li:leading-relaxed prose-a:text-primary-700 hover:prose-a:text-primary-800"
+  >
+    <h2>Entenda seu endereço IP</h2>
+
+    <p>
+      O <strong>endereço IP</strong> é o identificador único do seu dispositivo na
+      internet — equivalente ao "RG" da sua conexão. Esta página detecta
+      automaticamente o seu IPv4 e IPv6, além do <strong>hostname (PTR)</strong>
+      configurado pelo seu provedor, sem armazenar nada em nossos servidores.
+    </p>
+
+    <aside
+      class="not-prose my-8 rounded-lg border-l-4 border-primary-500 bg-primary-50 p-4 text-sm text-slate-700"
+    >
+      <p class="font-semibold text-slate-900">Em resumo</p>
+      <ul class="mt-2 space-y-1 list-disc pl-5">
+        <li>Detecta <strong>IPv4 e IPv6</strong> separadamente via DNS isolado.</li>
+        <li>Mostra o <strong>hostname (PTR)</strong> do seu provedor.</li>
+        <li>100% gratuito, sem cadastro, sem rastreamento.</li>
+        <li>Anúncios só com seu consentimento (Google Funding Choices).</li>
+      </ul>
+    </aside>
+
+    <nav
+      class="not-prose my-10 rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+      aria-label="Sumário"
+    >
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-500">Sumário</p>
+      <ol class="space-y-1.5 text-sm text-slate-700">
+        <li><a class="hover:text-primary-700" href="#o-que-e-ip">1. O que é um endereço IP?</a></li>
+        <li>
+          <a class="hover:text-primary-700" href="#ipv4-vs-ipv6">2. Diferença entre IPv4 e IPv6</a>
+          <ul class="ml-4 mt-1 space-y-1 text-slate-500">
+            <li><a class="hover:text-primary-700" href="#ipv6-vantagens">2.1 Vantagens do IPv6</a></li>
+            <li><a class="hover:text-primary-700" href="#ipv4-fim">2.2 O IPv4 vai acabar?</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="hover:text-primary-700" href="#como-funciona">3. Como funciona a ferramenta</a>
+          <ul class="ml-4 mt-1 space-y-1 text-slate-500">
+            <li><a class="hover:text-primary-700" href="#ptr">3.1 DNS reverso (PTR)</a></li>
+          </ul>
+        </li>
+        <li><a class="hover:text-primary-700" href="#publico-vs-privado">4. IP público x IP privado</a></li>
+        <li><a class="hover:text-primary-700" href="#host-dns">5. Host e DNS reverso</a></li>
+        <li><a class="hover:text-primary-700" href="#faq">6. Perguntas frequentes</a></li>
+      </ol>
+    </nav>
+
+    <h2 class="mt-4 font-semibold" id="o-que-e-ip"><span class="text-primary-600">1.</span> O que é um endereço IP?</h2>
+    <p>
+      Um endereço IP (<em>Internet Protocol</em>) é um identificador numérico
+      atribuído a cada dispositivo conectado a uma rede IP. Quando você acessa
+      um site, envia um e-mail ou faz uma videochamada, o servidor usa seu IP
+      para devolver a resposta ao lugar certo.
+    </p>
+    <p>
+      Existem duas versões em uso atualmente: o <strong>IPv4</strong> (criado
+      em 1983, ainda dominante) e o <strong>IPv6</strong> (a evolução para
+      resolver o esgotamento de endereços). A ferramenta acima detecta
+      automaticamente qual está ativo na sua conexão.
+    </p>
+
+    <AdSlot slotId={ADSENSE.slots.inArticle} format="fluid" className="my-8" />
+
+    <h2 class="mt-4 font-semibold" id="ipv4-vs-ipv6"><span class="text-primary-600">2.</span> Diferença entre IPv4 e IPv6</h2>
+    <p>
+      A diferença mais visível está no formato. Um IPv4 tem quatro blocos de
+      0 a 255 (ex.: <code>192.168.0.1</code>) — cerca de <strong>4,3 bilhões</strong>
+      de endereços possíveis. Com smartphones, IoT e nuvem, esse limite ficou
+      curto.
+    </p>
+    <p>
+      O IPv6 resolve com <strong>128 bits</strong>: oferece
+      <strong>340 undecilhões</strong> de endereços — espaço praticamente
+      inesgotável.
+    </p>
+
+    <h3 class="font-semibold mt-2" id="ipv6-vantagens">2.1 Vantagens práticas do IPv6</h3>
+    <ul>
+      <li><strong>Mais endereços disponíveis</strong>, eliminando NAT em massa.</li>
+      <li><strong>Roteamento mais eficiente</strong>, com cabeçalhos mais simples.</li>
+      <li><strong>Configuração automática (SLAAC)</strong>, sem precisar de DHCP.</li>
+      <li><strong>IPsec nativo</strong>, com criptografia obrigatória na especificação.</li>
+      <li><strong>Menor latência</strong> em redes dual-stack.</li>
+    </ul>
+
+    <h3 class="font-semibold mt-2" id="ipv4-fim">2.2 O IPv4 vai acabar?</h3>
+    <p>
+      Não tão cedo. O IPv4 continuará em redes legadas por muitos anos,
+      coexistindo com o IPv6 no modelo <em>dual-stack</em>. Provedores,
+      datacenters e CDNs já oferecem suporte simultâneo aos dois protocolos.
+    </p>
+
+    <h2 class="mt-4 font-semibold" id="como-funciona"><span class="text-primary-600">3.</span> Como funciona a ferramenta</h2>
+    <p>
+      Para identificar com precisão qual protocolo sua conexão está usando,
+      a ferramenta faz <strong>duas requisições em paralelo</strong> para
+      subdomínios configurados com registros DNS específicos — um truque
+      elegante baseado em DNS:
+    </p>
+
+    <div class="not-prose my-6 grid gap-3 sm:grid-cols-2">
+      <div class="rounded-lg border border-slate-200 bg-white p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Subdomínio 1</p>
+        <p class="mt-1 font-mono text-sm text-slate-800">ipv4.adryanfreitas.dev</p>
+        <p class="mt-2 text-sm text-slate-600">
+          Apenas registro <strong>A</strong> (IPv4). O navegador é obrigado a usar
+          IPv4 puro, e o servidor retorna seu IPv4.
+        </p>
+      </div>
+      <div class="rounded-lg border border-slate-200 bg-white p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Subdomínio 2</p>
+        <p class="mt-1 font-mono text-sm text-slate-800">ipv6.adryanfreitas.dev</p>
+        <p class="mt-2 text-sm text-slate-600">
+          Apenas registro <strong>AAAA</strong> (IPv6). Se sua rede não suporta
+          IPv6, a requisição falha e sabemos disso.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      O <strong>"IP preferencial"</strong> em destaque é inferido: priorizamos
+      IPv6 quando disponível, com fallback para IPv4 — a mesma regra que o
+      navegador usa em conexões dual-stack.
+    </p>
+
+    <h3 class="font-semibold mt-2" id="ptr">3.1 DNS reverso (PTR)</h3>
+    <p>
+      Após detectar seu IP, a API faz uma <strong>consulta DNS reversa</strong>
+      para associá-lo ao hostname configurado pelo provedor (ex.:
+      <code>bb.sjc.net.br</code>). A consulta tem timeout de 2s e o resultado
+      aparece no card <strong>"Hostname"</strong> — útil para identificar
+      proxies, VPNs ou conexões corporativas. Veja mais em
+      <a href="#host-dns">Host e DNS reverso</a>.
+    </p>
+
+    <p>
+      Toda a detecção acontece direto no seu navegador, sem armazenar logs
+      pessoais em nossos servidores. Nenhum dos dados coletados é retido após
+      a resposta HTTP.
+    </p>
+
+    <h2 class="mt-4 font-semibold" id="publico-vs-privado"><span class="text-primary-600">4.</span> IP público x IP privado</h2>
+    <p>
+      É comum confundir os dois, mas eles têm papéis bem diferentes:
+    </p>
+
+    <div class="not-prose my-6 grid gap-3 sm:grid-cols-2">
+      <div class="rounded-lg border border-slate-200 bg-white p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">IP público</p>
+        <p class="mt-2 text-sm text-slate-700">
+          Endereço que sua rede apresenta para a internet. Atribuído pelo seu
+          provedor (ISP). Único globalmente (ou compartilhado via NAT/CGNAT).
+        </p>
+        <p class="mt-2 font-mono text-xs text-slate-500">Ex.: 200.1.2.3</p>
+      </div>
+      <div class="rounded-lg border border-slate-200 bg-white p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">IP privado</p>
+        <p class="mt-2 text-sm text-slate-700">
+          Usado apenas dentro da sua rede local (LAN), em faixas reservadas.
+          Não é acessível pela internet.
+        </p>
+        <p class="mt-2 font-mono text-xs text-slate-500">Ex.: 192.168.0.1</p>
+      </div>
+    </div>
+
+    <p>
+      Para descobrir o IP privado dos seus dispositivos, abra o terminal:
+      <code>ipconfig</code> no Windows, ou <code>ifconfig</code> / <code>ip a</code>
+      no Linux e macOS. O endereço retornado pela nossa ferramenta é sempre o
+      <strong>IP público</strong>.
+    </p>
+
+    <h2 class="mt-4 font-semibold" id="host-dns"><span class="text-primary-600">5.</span> Host e DNS reverso (PTR)</h2>
+    <p>
+      Além do IP, a ferramenta consulta o <strong>registro PTR</strong>
+      (Pointer Record) — uma entrada DNS que faz o caminho inverso: em vez
+      de nome → IP, o PTR associa IP → nome. É o que chamamos informalmente
+      de "<em>DNS reverso</em>".
+    </p>
+    <p>
+      Na prática, o resultado costuma revelar o <strong>nome do provedor</strong>
+      ou da <strong>rede corporativa</strong> que originou a conexão:
+    </p>
+    <ul>
+      <li><code>200-1-2-3.user.veloxzone.com.br</code> — usuário residencial em provedor brasileiro.</li>
+      <li><code>host-189-45-22-17.telecom.net</code> — conexão empresarial ou institucional.</li>
+      <li><code>exit-node-01.tor-project.org</code> — tráfego originado de uma rede Tor.</li>
+      <li><code>aws-sa-east-1.compute.amazonaws.com</code> — origem em datacenter AWS.</li>
+    </ul>
+    <p>
+      O DNS reverso é <strong>controlado por quem administra o IP</strong>
+      (geralmente o provedor), não por você. Por isso muitos IPs aparecem com
+      nomes genéricos ou sem PTR configurado — nesse caso, a ferramenta exibe
+      "Sem registro PTR para este IP".
+    </p>
+    <p>
+      Para <strong>esconder</strong> seu IP e seu host, a solução é usar uma
+      VPN ou a rede Tor: ambas substituem tanto o IP quanto o PTR visto por
+      sites externos.
+    </p>
+
+    <h2 class="mt-4 font-semibold" id="faq"><span class="text-primary-600">6.</span> Perguntas frequentes (FAQ)</h2>
+
+    <h3 class="font-semibold mt-2" id="faq-localizacao">Meu IP pode revelar minha localização?</h3>
+    <p>
+      Em geral, apenas a cidade ou região do provedor, com precisão variável.
+      IPs <strong>não</strong> revelam endereço residencial exato. Para
+      localização mais precisa, normalmente é necessária ordem judicial.
+    </p>
+
+    <h3 class="font-semibold mt-2" id="faq-seguranca">É seguro mostrar meu IP nesta página?</h3>
+    <p>
+      Sim. Seu IP público já é visível em qualquer site que você acessa.
+      Esta ferramenta apenas lê e exibe a informação de volta para você.
+      Nenhum dado é armazenado em nossos servidores.
+    </p>
+
+    <h3 class="font-semibold mt-2" id="faq-ipv6-indisponivel">Por que meu IPv6 aparece como "não disponível"?</h3>
+    <p>
+      Sua rede ou provedor ainda não oferece IPv6. Isso é comum em algumas
+      regiões — gradualmente, mais provedores estão habilitando o protocolo.
+    </p>
+  </article>
+
+  <AdSlot slotId={ADSENSE.slots.footer} format="fluid" className="my-10" />
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Meu IP', item: SITE.url },
+    ],
+  })} />
+
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Meu IP pode revelar minha localização?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Em geral, apenas a cidade ou região do provedor, com precisão variável. IPs não revelam endereço residencial exato. Para uma localização mais precisa, normalmente é necessária uma ordem judicial.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'É seguro mostrar meu IP nesta página?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sim. Seu IP público já é visível em qualquer site que você acessa. Esta ferramenta apenas lê e exibe a informação de volta para você. Nenhum dado é armazenado em nossos servidores.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Por que meu IPv6 aparece como "não disponível"?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sua rede ou provedor ainda não oferece IPv6. Isso é comum em algumas regiões — gradualmente, mais provedores estão habilitando o protocolo.',
+          },
+        },
+      ],
+    })}
+  />
+</Layout>

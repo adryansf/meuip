@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Bloqueia indexação de endpoints internos
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://meuip.adryanfreitas.dev/sitemap.xml

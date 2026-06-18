@@ -1,0 +1,10 @@
+# ads.txt — Google AdSense Authorization
+# https://support.google.com/adsense/answer/7532445
+#
+# ⚠️  Substitua "pub-XXXXXXXXXXXXXXXX" abaixo pelo seu publisher ID
+#     (AdSense → Conta → Informações da conta → "Seu ID de publisher")
+#
+# Formato: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# O "f08c..." é o certification code do Google (fixo, não muda).
+
+google.com, pub-9790539286123866, DIRECT, f08c47fec0942fa0

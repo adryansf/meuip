@@ -1,0 +1,171 @@
+---
+import '../styles/global.css';
+import { ADSENSE, API_ENDPOINTS, SITE } from '../config';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonical?: string;
+  robots?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og-default.png',
+  canonical,
+  robots = 'index, follow, max-image-preview:large',
+  type = 'website',
+} = Astro.props;
+
+const fullTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
+const ogImageUrl = new URL(ogImage, SITE.url).toString();
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1e3a8a" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content={robots} />
+    <meta name="author" content={SITE.author} />
+    <meta name="format-detection" content="telephone=no" />
+    {ADSENSE.clientId && <meta name="google-adsense-account" content={ADSENSE.clientId} />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content={SITE.locale.replace('-', '_')} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={fullTitle} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={SITE.twitterHandle} />
+    <meta name="twitter:creator" content={SITE.twitterHandle} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href={new URL(API_ENDPOINTS.ipv4).origin} crossorigin />
+    <link rel="preconnect" href={new URL(API_ENDPOINTS.ipv6).origin} crossorigin />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://www.googletagservices.com" />
+    <link rel="dns-prefetch" href="https://fundingchoicesmessages.google.com" />
+
+    {ADSENSE.clientId && (
+      <script
+        is:inline
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE.clientId}`}
+        crossorigin="anonymous"
+      ></script>
+    )}
+
+    {ADSENSE.fundingChoicesId && (
+      <script
+        is:inline
+        async
+        src={`https://fundingchoicesmessages.google.com/i/${ADSENSE.fundingChoicesId}?ers=1`}
+      ></script>
+    )}
+    {ADSENSE.fundingChoicesId && (
+      <script is:inline>
+        (function () {
+          function signalGooglefcPresent() {
+            if (!window.frames['googlefcPresent']) {
+              if (document.body) {
+                const iframe = document.createElement('iframe');
+                iframe.style = 'width: 0; height: 0; border: 0;';
+                iframe.name = 'googlefcPresent';
+                document.body.appendChild(iframe);
+              } else {
+                setTimeout(signalGooglefcPresent, 0);
+              }
+            }
+          }
+          signalGooglefcPresent();
+        })();
+      </script>
+    )}
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebApplication',
+          name: SITE.name,
+          url: SITE.url,
+          applicationCategory: 'UtilityApplication',
+          operatingSystem: 'Any',
+          inLanguage: SITE.locale,
+          description,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
+          author: { '@type': 'Person', name: SITE.author },
+        },
+        {
+          '@type': 'Organization',
+          name: SITE.author,
+          url: SITE.url,
+          logo: new URL('/favicon-512.png', SITE.url).toString(),
+          sameAs: [`https://twitter.com/${SITE.twitterHandle.replace('@', '')}`],
+        },
+      ],
+    })} />
+
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-primary-700 focus:px-3 focus:py-2 focus:text-white"
+    >
+      Pular para o conteúdo principal
+    </a>
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+      <div class="mx-auto max-w-5xl px-4 py-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+        <p>© {new Date().getFullYear()} {SITE.author}. Todos os direitos reservados.</p>
+        <p>
+          <a class="hover:text-primary-700" href="/politica-de-privacidade">Privacidade</a>
+          <span class="mx-2 text-slate-300">·</span>
+          {ADSENSE.fundingChoicesId && (
+            <>
+              <a
+                class="hover:text-primary-700"
+                href="javascript:googlefc.callbackQueue.push(googlefc.showRevocationMessage)"
+                >Configurações de privacidade</a
+              >
+              <span class="mx-2 text-slate-300">·</span>
+            </>
+          )}
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

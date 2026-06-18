@@ -9,9 +9,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "biome check",
+    "lint:fix": "biome check --write --unsafe",
+    "format": "biome format --write"
   },
   "dependencies": {
-    "astro": "^6.4.7"
+    "@astrojs/vercel": "^10.0.8",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^6.4.7",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@biomejs/biome": "^2.5.0",
+    "@types/node": "^25.9.3",
+    "sharp": "^0.35.1",
+    "typescript": "^6.0.3"
   }
 }

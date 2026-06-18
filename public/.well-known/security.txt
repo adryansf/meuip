@@ -1,0 +1,8 @@
+# security.txt — RFC 9116
+# https://securitytxt.org/
+# Permite que pesquisadores de segurança reportem vulnerabilidades.
+
+Contact: mailto:contato@adryanfreitas.dev
+Expires: 2027-12-31T23:59:59z
+Preferred-Languages: pt-BR, en
+Canonical: https://meuip.adryanfreitas.dev/.well-known/security.txt

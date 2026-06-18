@@ -1,0 +1,18 @@
+/* TEAM */
+  Autor: Adryan Freitas
+  Contato: contato@adryanfreitas.dev
+  Site: https://adryanfreitas.dev
+
+/* THANKS */
+  Astro: https://astro.build
+  Tailwind CSS: https://tailwindcss.com
+  Vercel: https://vercel.com
+  Google AdSense: https://www.google.com/adsense
+
+/* SITE */
+  Última atualização: 2026/06
+  Idioma: Português (Brasil)
+  Doctype: HTML5
+  Stack: Astro 6 + TypeScript + Tailwind CSS 4
+  Hospedagem: Vercel Edge Network
+  Licença: Todos os direitos reservados

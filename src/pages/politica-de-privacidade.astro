@@ -1,0 +1,357 @@
+---
+import { SITE } from '../config';
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Política de Privacidade';
+const description =
+  'Política de privacidade do Meu IP — como coletamos, usamos e protegemos seus dados pessoais conforme a LGPD (Lei Geral de Proteção de Dados).';
+---
+
+<Layout title={title} description={description}>
+  <nav aria-label="Breadcrumb" class="mx-auto max-w-3xl px-4 pt-6">
+    <ol class="flex items-center gap-2 text-sm text-slate-500">
+      <li>
+        <a href="/" class="hover:text-primary-700">Início</a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li class="text-slate-700" aria-current="page">Política de Privacidade</li>
+    </ol>
+  </nav>
+
+  <article class="mx-auto max-w-3xl px-4 py-10 sm:py-14 prose prose-slate prose-headings:scroll-mt-20 prose-headings:font-extrabold prose-headings:tracking-tight prose-h1:mb-2 prose-h1:text-3xl prose-h1:font-extrabold prose-h2:mt-24 prose-h2:mb-6 prose-h2:flex prose-h2:items-baseline prose-h2:gap-3 prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-3 prose-h2:text-2xl prose-h2:font-extrabold prose-h2:text-slate-900 prose-h2:tracking-tight prose-h3:mt-12 prose-h3:mb-3 prose-h3:text-lg prose-h3:font-semibold prose-h3:text-slate-800 prose-p:my-5 prose-p:text-justify prose-p:leading-relaxed prose-p:hyphens-auto prose-p:[hyphenate-limit-chars:8_4_4] prose-strong:mr-1.5 prose-strong:font-semibold prose-strong:text-slate-900 prose-ul:my-5 prose-ul:ml-2 prose-ol:my-5 prose-ol:ml-2 prose-li:my-2 prose-li:leading-relaxed prose-a:text-primary-700 hover:prose-a:text-primary-800">
+    <h1>Política de Privacidade</h1>
+
+    <p class="not-prose text-sm text-slate-500">
+      Última atualização: {new Date().toLocaleDateString(SITE.locale, { year: 'numeric', month: 'long', day: 'numeric' })}
+    </p>
+
+    <p>
+      Esta Política descreve como o site <strong>{SITE.url.replace('https://', '')}</strong>
+      ("<strong>nós</strong>" ou "<strong>Meu IP</strong>") coleta, utiliza e protege
+      as informações dos seus usuários ("<strong>você</strong>") em conformidade com a
+      <strong>Lei nº 13.709/2018 (LGPD)</strong> e o
+      <strong>Regulamento (UE) 2016/679 (GDPR)</strong>, quando aplicável.
+    </p>
+
+    <aside class="not-prose my-8 rounded-lg border-l-4 border-primary-500 bg-primary-50 p-4 text-sm text-slate-700">
+      <p class="font-semibold text-slate-900">Em resumo</p>
+      <ul class="mt-2 space-y-1 list-disc pl-5">
+        <li>Coletamos <strong>somente</strong> seu IP público e o hostname associado (PTR).</li>
+        <li><strong>Nenhum dado é armazenado</strong> em nossos servidores.</li>
+        <li>Não há cadastro, login ou formulário.</li>
+        <li>Cookies de anúncio (AdSense) só rodam com seu consentimento via Google Funding Choices.</li>
+      </ul>
+    </aside>
+
+    <nav class="not-prose my-10 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" aria-label="Sumário">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-500">Sumário</p>
+      <ol class="space-y-1.5 text-sm text-slate-700">
+        <li><a class="hover:text-primary-700" href="#dados">1. Dados que coletamos</a></li>
+        <li><a class="hover:text-primary-700" href="#finalidades">2. Finalidades de uso</a></li>
+        <li><a class="hover:text-primary-700" href="#base-legal">3. Base legal</a></li>
+        <li><a class="hover:text-primary-700" href="#compartilhamento">4. Compartilhamento</a></li>
+        <li>
+          <a class="hover:text-primary-700" href="#cookies">5. Cookies e AdSense</a>
+          <ul class="ml-4 mt-1 space-y-1 text-slate-500">
+            <li><a class="hover:text-primary-700" href="#cookies-tipos">5.1 Cookies utilizados</a></li>
+            <li><a class="hover:text-primary-700" href="#cookies-consentimento">5.2 Como gerenciar</a></li>
+          </ul>
+        </li>
+        <li><a class="hover:text-primary-700" href="#retencao">6. Retenção de dados</a></li>
+        <li><a class="hover:text-primary-700" href="#direitos">7. Seus direitos</a></li>
+        <li><a class="hover:text-primary-700" href="#seguranca">8. Segurança</a></li>
+        <li><a class="hover:text-primary-700" href="#dpo">9. Encarregado (DPO)</a></li>
+        <li><a class="hover:text-primary-700" href="#alteracoes">10. Alterações</a></li>
+        <li><a class="hover:text-primary-700" href="#foro">11. Legislação e foro</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="dados"><span class="text-primary-600">1.</span> Dados que coletamos</h2>
+    <p>
+      Ao utilizar este site, coletamos <strong>automaticamente</strong> os seguintes
+      dados técnicos, necessários para o funcionamento da ferramenta:
+    </p>
+
+    <h3>1.1 Dados técnicos</h3>
+    <ul>
+      <li>
+        <strong>Endereço IP público</strong> (IPv4 e/ou IPv6). Processado em tempo real
+        e <strong>não armazenado</strong> em nossos servidores.
+      </li>
+      <li>
+        <strong>Hostname (registro PTR)</strong> — quando disponível, o servidor realiza
+        uma consulta de DNS reverso para associar seu IP ao nome configurado pelo seu
+        provedor. O resultado também <strong>não é armazenado</strong> e a consulta tem
+        timeout de 2 segundos.
+      </li>
+    </ul>
+
+    <h3>1.2 Dados opcionais (apenas com consentimento)</h3>
+    <p>
+      Se você consentir com cookies de publicidade (ver
+      <a href="#cookies">seção 5</a>), o Google define cookies e identificadores em seu
+      navegador. Esses dados são controlados pelo Google, não por nós.
+    </p>
+
+    <aside class="not-prose my-6 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+      <p class="font-semibold text-slate-900">O que <em>não</em> coletamos</p>
+      <p class="mt-1">
+        Não solicitamos nome, e-mail, telefone, CPF, localização GPS nem qualquer dado
+        que permita identificação direta. Não há cadastro, login ou formulário.
+      </p>
+    </aside>
+
+    <h2 id="finalidades"><span class="text-primary-600">2.</span> Finalidades de uso</h2>
+    <p>Os dados coletados são utilizados exclusivamente para as seguintes finalidades:</p>
+    <ol>
+      <li>
+        <strong>Prestação do serviço</strong> — exibir ao usuário seu próprio IP público
+        e, quando disponível, o hostname (PTR) associado.
+      </li>
+      <li>
+        <strong>Análise agregada e anônima</strong> — entender volume de acessos e
+        desempenho (via Vercel Analytics, se habilitado).
+      </li>
+      <li>
+        <strong>Exibição de anúncios personalizados</strong> — apenas após consentimento
+        explícito (ver <a href="#cookies">seção 5</a>).
+      </li>
+      <li>
+        <strong>Segurança</strong> — prevenção de abuso, fraude e ataques automatizados.
+      </li>
+    </ol>
+
+    <h2 id="base-legal"><span class="text-primary-600">3.</span> Base legal para o tratamento</h2>
+    <p>
+      O tratamento dos seus dados pessoais se fundamenta no <strong>art. 7º da LGPD</strong>:
+    </p>
+    <div class="not-prose my-6 overflow-hidden rounded-lg border border-slate-200">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-50 text-left text-slate-600">
+          <tr>
+            <th class="px-4 py-2 font-semibold">Inciso</th>
+            <th class="px-4 py-2 font-semibold">Hipótese</th>
+            <th class="px-4 py-2 font-semibold">Aplicação</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-slate-500">I</td>
+            <td class="px-4 py-2">Consentimento</td>
+            <td class="px-4 py-2 text-slate-600">Cookies de publicidade e qualquer tratamento além do estritamente necessário.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-slate-500">VI</td>
+            <td class="px-4 py-2">Exercício regular de direitos</td>
+            <td class="px-4 py-2 text-slate-600">Exibição do seu próprio IP.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-slate-500">IX</td>
+            <td class="px-4 py-2">Interesse legítimo</td>
+            <td class="px-4 py-2 text-slate-600">Exibição do seu próprio IP (informação pública).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="compartilhamento"><span class="text-primary-600">4.</span> Compartilhamento de dados</h2>
+    <p>
+      O <strong>endereço IP</strong> e o <strong>hostname (PTR)</strong> não são compartilhados
+      com terceiros. Ambos são processados em nossa infraestrutura e devolvidos exclusivamente
+      ao seu navegador, na mesma requisição que originou a consulta.
+    </p>
+    <p>
+      Se você consentir com cookies de publicidade, o <strong>Google</strong> (na qualidade
+      de operador) terá acesso a informações de navegação conforme detalhado na
+      <a href="#cookies">seção 5</a>.
+    </p>
+    <p>
+      <strong>Não vendemos, alugamos ou comercializamos</strong> dados pessoais de qualquer
+      natureza.
+    </p>
+
+    <h2 id="cookies"><span class="text-primary-600">5.</span> Cookies, Google AdSense e Google Funding Choices</h2>
+    <p>
+      Este site utiliza o <strong>Google AdSense</strong>, serviço de publicidade operado
+      pelo Google LLC. O AdSense utiliza cookies e identificadores para exibir anúncios
+      baseados nos seus interesses e nas suas visitas anteriores a este e outros sites.
+    </p>
+    <p>
+      A gestão do seu consentimento é feita pelo <strong>Google Funding Choices</strong>,
+      a plataforma oficial do Google para gerenciamento de consentimento, certificada pelo
+      <strong>IAB Europe Transparency &amp; Consent Framework (TCF) v2.3</strong> — o
+      padrão utilizado pela grande maioria dos publishers e reguladores europeus.
+    </p>
+    <p>
+      O Funding Choices exibe o banner de consentimento, registra sua escolha nos servidores
+      do Google e comunica essa decisão ao AdSense em tempo real.
+    </p>
+
+    <h3 id="cookies-tipos">5.1 Cookies utilizados pelo Google AdSense</h3>
+    <div class="not-prose my-4 overflow-hidden rounded-lg border border-slate-200">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-50 text-left text-slate-600">
+          <tr>
+            <th class="px-4 py-2 font-semibold">Cookie</th>
+            <th class="px-4 py-2 font-semibold">Função</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr>
+            <td class="px-4 py-2"><code class="text-xs">NID</code>, <code class="text-xs">SID</code>, <code class="text-xs">SAPISID</code>, <code class="text-xs">APISID</code>, <code class="text-xs">HSID</code>, <code class="text-xs">SSID</code></td>
+            <td class="px-4 py-2 text-slate-600">Preferências e autenticação do Google.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2"><code class="text-xs">IDE</code>, <code class="text-xs">id</code></td>
+            <td class="px-4 py-2 text-slate-600">DoubleClick — mensuração e personalização de anúncios.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2"><code class="text-xs">_gcl_au</code></td>
+            <td class="px-4 py-2 text-slate-600">Google Conversion Linker — atribuição de conversões.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2"><code class="text-xs">__gads</code>, <code class="text-xs">__gpi</code></td>
+            <td class="px-4 py-2 text-slate-600">Frequência de anúncios e performance.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="cookies-consentimento">5.2 Como funciona o consentimento</h3>
+    <ol>
+      <li>
+        Na <strong>primeira visita</strong>, o Google Funding Choices exibe um banner/modal
+        de consentimento. Você pode aceitar, recusar ou ajustar por categoria.
+      </li>
+      <li>
+        Sua escolha é armazenada pelo <strong>Google</strong> (não por nós) e comunicada
+        ao AdSense. Se você recusar, <strong>nenhum cookie de publicidade do Google</strong>
+        é definido no seu navegador.
+      </li>
+      <li>
+        Para revisar ou alterar a qualquer momento, clique em
+        <strong>"Configurações de privacidade"</strong> no rodapé do site, ou acesse
+        <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">adssettings.google.com</a>.
+      </li>
+      <li>
+        Para desativar cookies de terceiros em geral, ajuste as preferências do seu
+        navegador (Chrome, Firefox, Safari, Edge).
+      </li>
+    </ol>
+    <p>
+      Mais informações em
+      <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">políticas de publicidade do Google</a>
+      e na
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">política de privacidade do Google</a>.
+      Para detalhes técnicos sobre TCF, consulte
+      <a href="https://iabeurope.eu/tcf-for-vendors/" target="_blank" rel="noopener noreferrer">iabeurope.eu</a>.
+    </p>
+
+    <h2 id="retencao"><span class="text-primary-600">6.</span> Retenção de dados</h2>
+    <div class="not-prose my-4 overflow-hidden rounded-lg border border-slate-200">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-50 text-left text-slate-600">
+          <tr>
+            <th class="px-4 py-2 font-semibold">Dado</th>
+            <th class="px-4 py-2 font-semibold">Retenção</th>
+            <th class="px-4 py-2 font-semibold">Controlador</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr>
+            <td class="px-4 py-2">Endereço IP</td>
+            <td class="px-4 py-2"><span class="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700">Não retido</span></td>
+            <td class="px-4 py-2 text-slate-600">Nós</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">Hostname (PTR)</td>
+            <td class="px-4 py-2"><span class="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700">Não retido</span></td>
+            <td class="px-4 py-2 text-slate-600">Nós</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">Logs de acesso (Vercel)</td>
+            <td class="px-4 py-2">Até 30 dias, agregado</td>
+            <td class="px-4 py-2 text-slate-600">Vercel</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">Cookies AdSense</td>
+            <td class="px-4 py-2">30 dias a 2 anos</td>
+            <td class="px-4 py-2 text-slate-600">Google</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">Consentimento (Funding Choices)</td>
+            <td class="px-4 py-2">6 a 13 meses (TCF v2.3)</td>
+            <td class="px-4 py-2 text-slate-600">Google</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="direitos"><span class="text-primary-600">7.</span> Seus direitos (LGPD, art. 18)</h2>
+    <p>Você tem direito a:</p>
+    <ul>
+      <li><strong>Confirmar</strong> a existência de tratamento de dados.</li>
+      <li>Solicitar <strong>acesso</strong>, <strong>correção</strong> ou <strong>eliminação</strong> dos seus dados.</li>
+      <li><strong>Revogar</strong> o consentimento a qualquer momento.</li>
+      <li>Apresentar <strong>reclamação</strong> à Autoridade Nacional de Proteção de Dados (ANPD).</li>
+    </ul>
+    <p>
+      Como não armazenamos dados pessoais identificáveis (e os cookies ficam apenas no
+      seu navegador), a maioria desses direitos é exercida diretamente por você,
+      gerenciando cookies e armazenamento local do navegador.
+    </p>
+
+    <h2 id="seguranca"><span class="text-primary-600">8.</span> Segurança</h2>
+    <p>
+      Este site é servido via <strong>HTTPS com TLS 1.3</strong>. O código é executado em
+      infraestrutura gerenciada (Vercel Edge Network) com proteções padrão contra DDoS.
+      Não armazenamos dados pessoais em nossos próprios bancos de dados.
+    </p>
+
+    <h2 id="dpo"><span class="text-primary-600">9.</span> Encarregado de dados (DPO)</h2>
+    <p>
+      Para dúvidas, solicitações ou exercício de direitos, entre em contato com o
+      encarregado pelo tratamento de dados pessoais:
+    </p>
+    <div class="not-prose my-4 rounded-lg border border-slate-200 bg-white p-4">
+      <p class="text-sm"><strong>Nome</strong>: {SITE.author}</p>
+      <p class="text-sm"><strong>E-mail</strong>: <a class="text-primary-700 hover:underline" href={`mailto:${SITE.dpoEmail}`}>{SITE.dpoEmail}</a></p>
+    </div>
+
+    <h2 id="alteracoes"><span class="text-primary-600">10.</span> Alterações nesta política</h2>
+    <p>
+      Esta Política pode ser atualizada periodicamente. A data da última atualização está
+      no topo deste documento. Alterações relevantes serão comunicadas por aviso visível
+      no site.
+    </p>
+
+    <h2 id="foro"><span class="text-primary-600">11.</span> Legislação aplicável e foro</h2>
+    <p>
+      Este documento é regido pela legislação brasileira, em especial pela
+      <strong>Lei nº 13.709/2018 (LGPD)</strong>. Fica eleito o foro da comarca do titular
+      dos dados para dirimir controvérsias, ressalvada a competência da
+      <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong>.
+    </p>
+  </article>
+
+  <div class="mx-auto max-w-3xl px-4 pb-10">
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+    >
+      <svg
+        class="h-4 w-4"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M12.79 5.23a.75.75 0 0 1-.02 1.06L8.832 10l3.938 3.71a.75.75 0 1 1-1.04 1.08l-4.5-4.25a.75.75 0 0 1 0-1.08l4.5-4.25a.75.75 0 0 1 1.06.02z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      Voltar para a página inicial
+    </a>
+  </div>
+</Layout>
