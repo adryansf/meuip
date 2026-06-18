@@ -36,6 +36,12 @@ function buildResponseHeaders(request: Request): HeadersInit {
 }
 
 function extractClientIp(request: Request): string | null {
+  const cfIp = request.headers.get('cf-connecting-ip');
+  if (cfIp) {
+    const trimmed = cfIp.trim();
+    if (trimmed) return trimmed;
+  }
+
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
     const first = forwarded.split(',')[0]?.trim();
