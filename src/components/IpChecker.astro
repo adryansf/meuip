@@ -397,10 +397,19 @@ import AdSlot from './AdSlot.astro';
       updateStatus();
 
       const preferredIp = ipv6Ip ?? ipv4Ip;
-      const preferredEndpoint = ipv6Ip ? endpoints.ipv6 : endpoints.ipv4;
-      if (preferredIp && preferredEndpoint) {
+      if (preferredIp) {
+        const preferredEndpoint = ipv6Ip ? endpoints.ipv6 : endpoints.ipv4;
+        const fallbackEndpoint = ipv6Ip ? endpoints.ipv4 : endpoints.ipv6;
+
+        let hostname: string | null | undefined = null;
         const detail = await fetchIpWithDetail(preferredEndpoint, signal);
-        const hostname = detail?.hostname;
+        hostname = detail?.hostname;
+
+        if (!hostname && fallbackEndpoint) {
+          const fallbackDetail = await fetchIpWithDetail(fallbackEndpoint, signal);
+          hostname = fallbackDetail?.hostname;
+        }
+
         if (hostname) {
           setState(hostnameEls, 'ready', { value: hostname });
         } else {
